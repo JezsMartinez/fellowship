@@ -1,0 +1,40 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  PAPER: 'draw'
+
+
+prgbib_pdf:
+  stage: build
+  tags:
+    - docker
+  image: kmindi/latex-docker  # use a Docker image for LaTeX from https://hub.docker.com/
+  script:
+    - rm -f *.bbl *.log *.out
+    - pdflatex draw.tex
+    - biber draw
+    - pdflatex draw.tex
+    - pdflatex draw.tex
+    - pdflatex sup.tex
+    - biber sup
+    - pdflatex sup.tex
+    - pdflatex sup.tex
+  artifacts:
+    paths:
+      - $PAPER.pdf
+      - sup.pdf
+
+pages:
+  stage: deploy
+  script:
+    - mkdir .public
+    - cp $PAPER.pdf .public
+    - cp sup.pdf .public
+    - mv .public public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
