@@ -3,7 +3,7 @@ stages:
   - deploy
 
 variables:
-  PAPER: 'draw'
+  PAPER: 'proposal'
 
 
 prgbib_pdf:
@@ -13,18 +13,14 @@ prgbib_pdf:
   image: kmindi/latex-docker  # use a Docker image for LaTeX from https://hub.docker.com/
   script:
     - rm -f *.bbl *.log *.out
-    - pdflatex draw.tex
-    - biber draw
-    - pdflatex draw.tex
-    - pdflatex draw.tex
-    - pdflatex sup.tex
-    - biber sup
-    - pdflatex sup.tex
-    - pdflatex sup.tex
+    - pdflatex proposal.tex
+    - biber proposal
+    - pdflatex proposal.tex
+    - pdflatex proposal.tex
+
   artifacts:
     paths:
       - $PAPER.pdf
-      - sup.pdf
 
 pages:
   stage: deploy
