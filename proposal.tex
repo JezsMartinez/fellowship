@@ -133,20 +133,86 @@
 	In practice, this set of equations can either be solved iteratively using  a Freeze-and-Thaw\supercite{FaT} procedure(as done in ADF\supercite{te2001chemistry} and other molecular codes), or simultaneously by all subsystems where the total density is updated at every SCF cycle (as done in CP2K \supercite{hutter2014cp2k} and Quantum-Espresso\supercite{RN48,mi2021eqe}).
 
 \subsection{rt-TDDFT}
-
+	Real-Time Time-Dependent Density Functional Theory (rt-TDDFT) or Real-Time Time-Dependent Kohn-Sham is used for computing excited state and response properties of molecules goes beyond Casida's equation \supercite{casida1995recent} and use explicit time propagation methods\supercite{goings2018real}.
+	
+	Evolution in time of the one-electron density matrix $\textbf{D}(t)$ in the algebraic approximation is given by,
+	
+	\begin{equation}
+		\textbf{D}(t) = \textbf{U}(t,t_0)\textbf{D}(t_0)\textbf{U}(t,t_0)^{\dagger}
+	\end{equation}
+ 	Where $\textbf{U}(t,t_0)$, the matrix representation of the time-evolution operator, is defined as,
+ 	
+ 	\begin{equation}
+ 		\textbf{U}(t,t_0)= \hat{T} exp \left( -i \int_{t_0}^{t} \textbf{F}(t')dt' \right),
+ 	\end{equation}
+ 	
+ 	and $\hat{T}$ is the time-ordering operator. This time-ordering problem is solved by discretizing the time using a small time step\supercite{de2020pyberthart}. 
+ 	
+ 	A exponential midpoint ansatz is employed to study valence and core excitation \supercite{de2021environment}. Where the Fock matrix is given by,
+ 	
+ 	\begin{equation}
+ 		\textbf{F}(t)=\textbf{h}_0+\textbf{G}[\textbf{D}(t)]+v_{ext}(t)
+ 	\end{equation}
+ 	
+ 	The one-electron operator is $\textbf{h}_0$ and $\textbf{G}$ is the two-electron term,  define as,
+ 	
+ 	\begin{equation}
+ 		\textbf{G}[\textbf{D}(t)] = \textbf{J}[\textbf{D}(t)]+c_x\textbf{K}[\textbf{D}(t)]+c_x\textbf{V}_xc[\textbf{D}(t)]
+ 	\end{equation}
+ 	
+ 	The later accounts for the term $c_x$ which is defined as the fraction of Hartree-Fock exchange in the exchange correlation potential($V_xc$).
 
 \subsection{BOMME}
-
+	Manby-Miller embedding approach accelerate rt-TDDFT employing different levels of theory into two different mapping domains. Based on the Fock-matrix(FM), the subsystem to be treated accurately is described by a high-level FM, while the remaining part with a low-level RM in a reduced basis set. A change in the basis set from the non-orthogonal atomic-orbital(AO) partition of the system to a block-orthogonalized (BO) scheme also is employed \supercite{ding2017embedded}. 
+	
+	The low-level FM is defined as,
+	
+	\begin{equation}
+		\label{llfm}
+		\tilde{\textbf{h}}_0 = \textbf{O}^{T}\textbf{h}_0\textbf{O}, \;  \tilde{G}^{Low}[\tilde{\textbf{D}}]= \textbf{O}^{T}\textbf{G}^{Low}\textbf{O}, \;  \tilde{\textbf{D}} = \textbf{O} \textbf{D} \textbf{O}^{T}
+	\end{equation} 
+	
+	Equation \ref{llfm} describes the block-orthogonalized basis by tildes, where $\textbf{O}$ is the transformation matrix from the AO to BO basis set, defined as,
+	
+	\begin{equation}
+		\textbf{O}
+		\begin{pmatrix}
+			\textbf{I}^{AA} & \textbf{-P}^{AB} \\
+			\textbf{0} & \textbf{I}^{BB}  
+		\end{pmatrix}
+	\end{equation}
+	
+	where $AA$ block denoted the subsystem with high of level theory and $BB$ block with low level of theory.$\textbf{I}^{AA}$ and $\textbf{I}^{BB}$ are the identity matrices, with dimensions $n_a$ and $n_b$, describing subsystem A and B basis set, respectively.  $\textbf{-P}^{AB}$ is the projection matrix, equal to $(\textbf{S}^{AA})^{-1}\textbf{S}^{AB}$, in which $\textbf{S}^{AB}$ is the AO overlap between the subsystems. 
+	
+	Finally, the Fock matrix in the BO basis expression is,
+	
+	\begin{equation}
+		\textbf{F} = \tilde{h}_0 + \tilde{G}^{Low}[\tilde{\textbf{D}}] +(\tilde{\textbf{G}}^{High}[\tilde{\textbf{D}}^{AA}]-\tilde{\textbf{G}}^{Low}[\tilde{\textbf{D}^{AA}}])
+	\end{equation}
+	
+	Different methods for the calculation of the exchange term in $\textbf{G}^{High}$ are available, here the Koh, Nguyen-Beck, Parkhill is employed. This method account only for the exact exchange interaction within the AA block, an reads as,
+	
+	\begin{equation}
+		E_{EXO}=-\frac{1}{4} \sum_{\mu kv\lambda} (\mu k|v\lambda) \textbf{D}_{\mu v}^{AA} \textbf{D}_{k \lambda}^{AA}
+	\end{equation}
+	
 \section{Computational Details}
 
-	Embedding potentials are obtained by equation \ref{embedd} following the frozen density embedding (FDE) method \ref{eq:ksced} implemented in the embedding Quantum Espresso (eQE) package \supercite{genova2017eqe}- Ultrasoft pseudopotentials from the PSL pseudopotential library \supercite{corso2014comput} are employed. 
+	Equation \ref{embedd} is solved following the frozen density embedding (FDE) method \ref{eq:ksced} implemented in the embedding Quantum Espresso (eQE) package \supercite{genova2017eqe}- Ultrasoft pseudopotentials from the PSL pseudopotential library \supercite{corso2014comput} are employed. A new implementation also is available in the package eDFTpy\supercite{edftpy} which is further used. Both codes are based on Quantum Espresso \supercite{qe}. Regarding the evaluation of the additive and nonadditive exchange--correlation contributions PBE functional \supercite{perdew1996phys} was selected. While, revAPBEK \supercite{laricchia2011generalized} for nonadditive kinetic energy contributions. 
 	
-	Embedding potentials from eQE are on regular fast Fourier transform (FFT) grid which are further fitted to smooth custom grids using an atom-centered grid function in eQE \supercite{genova2017eqe} and PySCF \supercite{PYSCF}. The above, allows the use of the Embedding potentials in molecular-based codes for a self-consistent field(SCF)\supercite{purvis1976transition} ground state total energy determination. 
-
+	For the rt-BOMME and rt-FDE calculation Psi4Numpy\supercite{smith2018psi4numpy} framework of Psi4 code\supercite{smith2020psi4}, is employed. B3LYP basis set is used employing aug-cc-pVTZ and STO-3G for the High and Low Fock Matrix calculations. For real-time simulations, the subsystem belonging to the high Fock Matrix is calculated without an external electric field, and perturbed by an analytic $\delta$-function pulse os strength $k=5.0x10^{-4}$ a.u. along the three spacial directions. The Pade approximant-based Fourier Transform is used to furthers reduced the length of the signal for the dipole moment analysis, with a damping $\epsilon^{-\lambda \dot{t}}$ with $\lambda=3.0x10-4$. 
+	
+	Three key systems are used: (1) Liquid water\supercite{gaiduk2018electron} and Ice \supercite{bergmann2007nearest,zhovtobriukh2019x}, (2) Cations ($Li^{+}$,$Na^{+}$,$K^{+}$,$NH_4^{+}$) paired to carboxylate groups of acetate and glycine solvated in water \supercite{aziz2008cation}, and (3) A complex molecule ($K_3[Fe(CN)_6]$) solvated in water \supercite{zheng2018enabling}. For system (1) the liquid water model are taken over an average structure from an \textit{ab-initio} molecular dynamics (AIMD) trajectories using path-integral(PI) approach \supercite{gaiduk2018electron}, with cell sizes of 12.42 \AA and 64 water molecules per unit cell.  Ice structures also are taken from a PIMD with 192 water molecules in the simulation box\supercite{leetmaa2010theoretical}. 
+	
+	For the system (2) a first MD simulation of each of the investigated ion pairs in water is taken as starting system \supercite{aziz2008cation} of 800 water molecules in a periodic cubic cell. A further \textit{ab-initio s-DFT} molecular dynamics\supercite{genova2016avoiding} based on this geometry will be performed.  For the last system (3) Potassium Ferricyanide complex solvated by water will be constructed forming the first (6 water molecules) and the second (12 water molecules) solvation shells \supercite{uudsemaa2003density,seidel2011valence}. 
+	
 \section{Current project and future directions}
-
-
-\section{Conclusions}
+	
+	To work in ...
+	
+	With the successful approximation of IP values and its contributions. The embedding potential approach can further be used to tackle other electronic structure based properties, as the core electron excitations. To achieve that, different method have been employed, but only one base on subsystem partition approaches. For that, we wish to prove that rt-BOMME and rt-sDFT are capable method to solve different back in previous computational approaches, as too narrow absorption bands, insufficient pre edge intensity or insufficient postedge intensity.
+	
+	But not only we wish to get the spectra, also we wish to go further and ask different questions, regarding whether ions 	substantially impact the hydrogen-bond network of water outside the first solvation shell.
 
 \printbibliography
 
