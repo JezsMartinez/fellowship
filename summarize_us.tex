@@ -1,0 +1,50 @@
+\documentclass[notitlepage,12pt]{report}
+\usepackage[left=0.5in, right=0.5in, top=0.5in, bottom=0.5in]{geometry}
+
+\usepackage{titling}
+\usepackage{lipsum}
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\graphicspath{./images/}
+\usepackage{subcaption}
+\newcommand{\tr}{\mathrm{tr}}
+\usepackage{hyperref}
+\usepackage{authblk}
+\usepackage[backend=biber, style=chem-acs]{biblatex}
+\usepackage{tabularx}
+% \usepackage{amsmath}
+\usepackage{mathtools}% Loads amsmath
+\usepackage{physics}
+\renewcommand\thesection{\arabic{section}}
+
+\bibliography{bib}
+\addbibresource{bib.bib}
+
+
+\begin{document}
+	\title{Electronic properties in condensed-phase molecular systems under Embedded theoretical approaches: Liquid water systems}
+	\author[1]{Jessica Martinez}
+	\affil[1]{Department of Chemistry, Rutgers University, Newark, New Jersey}
+	\date{June 2022}
+	\renewcommand\Affilfont{\itshape\small}
+	\thispagestyle{empty}
+\maketitle
+
+	XANES targets the study of excitation from core orbitals due to absorbing photons in the X-ray energy range\supercite{fransson2016x}, which allow the study of the oxidation state, local symmetry, and coordination environment in gas, liquid, or solid phase\supercite{rehr2005progress,koningsberger1987x}. 
+	
+	Targeting the study of XANES, an alternative embedding approach connecting subsystem DFT\supercite{mi2021eqe,mi2019nonlocal,mi2019ab} called block-orthogonalized Manby-Miller embedding (BOMME)\supercite{ding2017embedded} emerged. BOMME with a combination of real-time TDDFT (rt-BOMME) has presented a better performance in the capture of both intermolecular and intramolecular coupling among subsystems \supercite{koh2017accelerating}. A recently implementation of rt-BOMME and rt-sDFT \supercite{de2021environment} in Psi4 code \supercite{smith2020psi4}, predicted and overcome general over and underestimations of main and k-edge in the modeling of the X-ray absorption near-edge structures (XANES).
+	
+	We wish to further apply rt-BOMME and rt-sDFT accounting for more than the first solvation shell of Cl and F in water (counting for eight water molecules). We selected three main clusters (1) Liquid water and Ice, (2) Cations solvated in water, and (3) A complex molecule ($K_3[Fe(CN)_6]$) solvated in water. Furthermore, implementation of rt-sDFT in ADF\supercite{te2001chemistry} and eDFTpy\supercite{edftpy}, code-based of Quantum espresso package\supercite{giannozzi2009quantum}, will be used.
+
+	Frozen density embedding (FDE) method implemented in the embedding Quantum Espresso (eQE) package \supercite{genova2017eqe}- Ultrasoft pseudopotentials from the PSL pseudopotential library \supercite{corso2014comput} are employed. A new implementation also is available in the package eDFTpy\supercite{edftpy} which is further used. Both codes are based on Quantum Espresso \supercite{qe}. Regarding the evaluation of the additive and nonadditive exchange--correlation contributions PBE functional \supercite{perdew1996phys} was selected. While, revAPBEK \supercite{laricchia2011generalized} for nonadditive kinetic energy contributions. 
+
+	For the rt-BOMME and rt-FDE calculation Psi4Numpy\supercite{smith2018psi4numpy} framework of Psi4 code\supercite{smith2020psi4}, is employed. B3LYP basis set employs aug-cc-pVTZ and STO-3G for the High and Low Fock Matrix calculations. For real-time simulations, the subsystem belonging to the high Fock Matrix is calculated without an external electric field and perturbed by an analytic $\delta$-function pulse os strength $k=5.0x10^{-4}$ a.u. Along with the three spatial directions. The Pade approximant-based Fourier Transform is used to furthers reduce the length of the signal for the dipole moment analysis, with a damping $\epsilon^{-\lambda \dot{t}}$ with $\lambda=3.0x10-4$. 
+
+	Particularly in US one key systems is used: (1) Liquid water\supercite{gaiduk2018electron} and Ice \supercite{bergmann2007nearest,zhovtobriukh2019x}. For which the liquid water model are taken over an average structure from an \textit{ab-initio} molecular dynamics (AIMD) trajectories using path-integral(PI) approach \supercite{gaiduk2018electron}, with cell sizes of 12.42 \AA and 64 water molecules per unit cell.  Ice structures also are taken from a PIMD with 192 water molecules in the simulation box\supercite{leetmaa2010theoretical}. 
+	
+	With our currently successful approximation of IP values for liquid water and their contributions, we target that the embedding potential approach can further tackle other electronic structure-based properties, such as the core electron excitations. For that, we wish to prove that rt-BOMME and rt-sDFT are capable methods to overpass failures in previous computational approaches in the calculation of XANES spectra, as too narrow absorption bands, insufficient pre-edge intensity, or insufficient postedge intensity. And achieve an alternative in the prediction of XANES using subsystem-DFT approaches.
+
+\printbibliography
+
+\end{document}

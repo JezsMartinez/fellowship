@@ -1,5 +1,5 @@
 \documentclass[notitlepage,12pt]{report}
-\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage[left=0.5in, right=0.5in, top=0.5in, bottom=0.5in]{geometry}
 
 \usepackage{titling}
 \usepackage{lipsum}
@@ -32,23 +32,21 @@
 \maketitle
 \section{Introduction}
 
-	High accurate description at the electronic level in condensed-phase molecular systems (CPMS) as liquid water requires a perfect equilibrium between the use of spectroscopy techniques\supercite{reimann2021two,malerz2021low,bolognesi2021combined} and computational approaches \supercite{couto2007understanding,ambrosio2016structural,ozaki2021advances}. Two important properties widely used in liquid water characterization imply the determination of the Ionization Potentials (IPs)\supercite{thurmer2021accurate,perry2020ionization,credidio2021quantitative,thurmer2021valence,tolle2019charged,gaiduk2018electron,gaiduk2016photoelectron,seidel2016valence}, as well as, the core electronic excitations to the continuous\supercite{zhovtobriukh2019liquid,zhang2020isotope,smith2020femtosecond}.
+	High accurate description at the electronic level in condensed-phase molecular systems as liquid water requires a perfect equilibrium between the use of spectroscopy techniques\supercite{reimann2021two,malerz2021low,bolognesi2021combined} and computational approaches \supercite{couto2007understanding,ambrosio2016structural,ozaki2021advances}. Two important properties widely used in liquids characterization imply the determination of Ionization Potentials (IPs)\supercite{thurmer2021accurate,perry2020ionization,credidio2021quantitative,thurmer2021valence,tolle2019charged,gaiduk2018electron,gaiduk2016photoelectron,seidel2016valence}, as well as, the core electronic excitations to the continuous by the X-Ray absorption spectroscopy (XAS)\supercite{zhovtobriukh2019liquid,zhang2020isotope,smith2020femtosecond}.
 	
-	On one side, the determination of IPs of liquid water, which implies the knowledge of the ionized states of the electrons, take part in many crucial processes in electrochemistry\supercite{marenich2014computational}, photochemistry\supercite{reuther1996primary,hu2021photochemical} as well as peculiar states of matter like excess electrons solvated in liquid water\supercite{ambrosio2017electronic}. 
+	The determination of IPs of liquid water take part in many crucial processes in electrochemistry\supercite{marenich2014computational}, photochemistry\supercite{reuther1996primary,hu2021photochemical} as well as peculiar states of matter like excess electrons solvated in liquid water\supercite{ambrosio2017electronic}.  Recent advances in liquid microjet (LJ) photoelectron spectroscopy have opened the door to the determination of accurate electronic energetics of water and aqueous solutions \supercite{thurmer2021accurate,perry2020ionization,credidio2021quantitative,thurmer2021valence}. The most accurate value for the VIE of liquid water employing LJ is 11.33 $\pm$0.03 eV which account for a critical factor: the measuring of the liquid-phase low-energy cutoff spectrum along with the photoelectron peak of the interest\supercite{thurmer2021accurate}. 
 	
-	Recent advances in liquid microjet (LJ) photoelectron spectroscopy have opened the door to the determination of accurate electronic energetics of water and aqueous solutions \supercite{thurmer2021accurate,perry2020ionization,credidio2021quantitative,thurmer2021valence}. Perry \textit{et al}. \supercite{perry2020ionization} obtained values for the vertical and adiabatic ionization energies (which are indicated by VIE and AIE, respectively) of liquid water of 11.67 and 10.12 eV, regarding the $1b_1$ orbital band.   A second study determined a more accurate value for the VIE of liquid water of 11.33 $\pm$ 0.03 eV accounting for a critical factor: the measuring of the liquid-phase low-energy cutoff spectrum along with the photoelectron peak of the interest in up to a broad range of photon energies (15-950 eV)\supercite{thurmer2021accurate}.
+	Theoretical studies as Gaiduk \textit{et al.} \supercite{gaiduk2018electron} employed path-integral molecular dynamics (PIMD) in combination with many-body perturbation theory (MBPT) within the $G_{0}W_{0}$ approximation starting from a range-separate hybrid (RSH) in the determination of the IP, with a VIE of 11.53 eV. Similarly, Ziaei \textit{et al}. \supercite{ziaei2018probing} utilized a self-consistent GW approach with a vertex correction and the projector augmented wave (PAW) method \supercite{dal2014pseudopotentials} finding  good agreement with the results of Gaiduk \textit{et al.} \supercite{gaiduk2018electron}. Both results are remarkable in that they reproduce the experiment to within a few tenths of eVs.
 	
-	From the theoretical side, Gaiduk \textit{et al.} \supercite{gaiduk2018electron} employed path-integral molecular dynamics (PIMD) with \textit{ab-initio} potentials in combination with many-body perturbation theory (MBPT) within the $G_{0}W_{0}$ approximation starting from a range-separate hybrid (RSH) for the description of the ground-state for liquid water. Their values for the AIE and VIE  are 10.26 and 11.53 eV, respectively.  Similarly, Ziaei \textit{et al}. \supercite{ziaei2018probing} utilized a self-consistent GW approach with a vertex correction and the projector augmented wave (PAW) method \supercite{dal2014pseudopotentials} finding  good agreement with the results of Gaiduk \textit{et al.} \supercite{gaiduk2018electron}. Both results are remarkable in that they reproduce the experiment to within a few tenths of eVs.
+	Following the trend but now employing Density Functional Theory (DFT) \supercite{thomas1927calculation,fermi1927statistical, hogenberg, kohn} a previous work\supercite{tolle2019charged} attempted the calculation of IPs of liquid water based on a new subsystem DFT method\supercite{jacob2014subsystem,wesolowski2015frozen,krishtal2015subsystem} capable of approaching charged systems regardless of the underlying adoption of periodic boundary conditions \supercite{tolle2019charged}, called “Impurity Model”. 
 	
-	Following the trend but now employing   Density Functional Theory (DFT) \supercite{thomas1927calculation,fermi1927statistical, hogenberg, kohn}, a theory based on the electron density rather than many-body wavefunctions, a previous work\supercite{tolle2019charged} attempted the calculation of IPs of liquid water based on a new subsystem DFT method\supercite{jacob2014subsystem,wesolowski2015frozen,krishtal2015subsystem} capable of approaching charged systems regardless of the underlying adoption of periodic boundary conditions with simulation cells containing a constrained number of molecules \supercite{tolle2019charged}, called “Impurity Model”. 
+	Subsystem DFT ameliorates the limitation of DFT in the studying of bulk systems as liquids, based on a divide-and-conquer strategy. In which the total electron density is divided into a sum of individual densities called subsystem DFT or Frozen Density Embedding (FDE) \supercite{mi2021eqe,mi2019nonlocal,mi2019ab}. By partitioning a bulk-phase system into smaller subsystems allows the selection of a few or even one subsystem of interest, which as a consequence is embedded in a complex environment \supercite{schmitt2020frozen}. This arises to a robust strategy to study the effects of the environment due to a single subsystem, the so-called “Embedding Potential” \supercite{genova2016avoiding}. 
 	
-	In detail, subsystem DFT ameliorates the limitation of DFT in the studying of bulk systems as liquids i.e., an infinite number of molecules, based on a divide-and-conquer strategy. In which the total electron density is divided into a sum of individual densities, which effectively scales almost linearly concerning the system size, called subsystem DFT or Frozen Density Embedding (FDE) \supercite{mi2021eqe,mi2019nonlocal,mi2019ab}. By partitioning a bulk-phase system into smaller subsystems allows the selection of a few or even one subsystem of interest, which as a consequence is embedded in a complex environment \supercite{schmitt2020frozen}. This arises to a robust strategy to study the effects of the environment due to a single subsystem, the so-called “Embedding Potential” \supercite{genova2016avoiding}. 
+	The “Impurity Model” relies on the fact that Coulomb potentials for the electronic and nuclear charges can be computed based on a Screening potential arising for the contribution of the “Embedding potential” of the periodic images with respect to the same subsystem\cite{tolle2019charged}.
 	
-	The “Impurity Model” relies on the fact that Coulomb potentials for the electronic and nuclear charges can be computed based on a Screening potential. This Screening potential arises for the contribution of the “Embedding potential” of the periodic images with respect to the same subsystem, which generates a partition of the system into a finite, nonperiodic subsystem with density $\rho_I$, and a semi-infinite environment. The above can be done because a subsystem’s electron density can be taken for the density of an extended, periodic subsystem or the density of a finite, single subsystem. Details are found in the reference paper\cite{tolle2019charged}. 
+	Based on both the “Impurity Model” and adding the $\Delta$-SCF approach\supercite{bagus1965self,waskom2017mwaskom} (the energy difference between the neutral and the polarized systems) not only the vertical IP of liquid water are computed, but also the IP is breakdown into five energy contributions:  (1) Mean field: the ionization energy of each water molecule computed at Hartree-Fock level; (2) Correlation: electron correlation within each water molecule at the correlated wavefunction level as well as DFT; (3) Interaction: Coulomb interactions between each water molecule and their environment augmented by effects of exchange, correlation and Pauli repulsion; (4) Polarization: polarization of the environment electronic structure in response to the ionization of a nearby water molecule; and finally, (5) Delocalization: the possibility that the spin density of the cation is delocalized over more than one water molecule.
 	
-	Based on both  the “Impurity Model” and adding the $\Delta$-SCF approach\supercite{bagus1965self,waskom2017mwaskom} (the energy difference between the neutral and the polarized systems) not only the vertical IP of liquid water are computed, but also a breakdown of the IP into five contributions is obtained:  (1) \textbf{Mean field}: the ionization energy of each water molecule computed at the mean-field, Hartree-Fock level; (2) \textbf{Correlation}: the effect of going beyond Hartree-Fock to account for electron correlation within each water molecule at the correlated wavefunction level as well as DFT; (3) \textbf{Interaction}: interaction with the environment which consist of the Coulomb interactions between each water molecule and their environment (an infinite bulk of liquid water) augmented by effects of exchange, correlation and Pauli repulsion (non-additive kinetic energy); (4) \textbf{Polarization}: polarization of the environment electronic structure in response to the ionization of a nearby water molecule; and finally, (5) \textbf{Delocalization}: the possibility that the spin density of the cation is delocalized over more than one water molecule.
-	
-	For this work, the IP was determined by averaging over 128 multiple snapshots of 64 water molecules considered in the corresponding simulation cell. Two \textit{ab-initio} molecular dynamics (AIMD) trajectories were used separately, a Born-Oppenheimer(BO) trajectory and a path-integral(PI) dynamics trajectory \supercite{gaiduk2018electron}. The average mean-field contribution is then successfully obtained over the 64 subsystems (av. 10.81 eV) and reformed by three essential corrections: Correlation, Interaction, and Polarization, which implies the inclusion of electronic and environmental contributions to surpass the Hartree-Fock limitations. 
+	By averaging over 128 multiple snapshots of 64 water molecules considered in the corresponding simulation cell two \textit{ab-initio} molecular dynamics (AIMD) trajectories were used separately, a Born-Oppenheimer(BO) and a path-integral(PI) dynamics trajectory \supercite{gaiduk2018electron}. The average mean-field contribution is then successfully obtained (av. 10.81 eV) and reformed by three essential corrections: Correlation, Interaction, and Polarization. 
 	
 \begin{minipage}{0.4\textwidth}
 	\label{cont_ip}
@@ -59,160 +57,133 @@
 	In terms of the correlation, we found a consistent trend among CCSD(T), PBE, and MP2 methods, see Figure \ref{cont_ip}, with a slight overestimation of av. 0.28 eV for MP2, compared with one of the most accurate treatments of the electronic correlation, CCSD(T). The polarization of the electronic environment nearby an ionized water molecule arises with a correction average of av. 0.84 eV while the embedding correction subtracts av. -2.80 eV for both PI and BO systems. Subsequently, a fifth contribution was found to have a negligible effect, namely, accounting for spin density delocalization over more than one water molecule. 
 \end{minipage}
 	
-	Going beyond FDE, an alternative embedding approach connecting subsystem DFT emerged, the so-called block-orthogonalized Manby-Miller embedding (BOMME). BOMME is a projection operator technique that is forgoing the use of approximate KEDFs and allows the fragmentation of a system through covalent bonds\supercite{ding2017embedded}. BOMME with a combination of real-time TDDFT (rt-BOMME) has presented a better performance in the capture of both intermolecular and intramolecular coupling among subsystems \supercite{koh2017accelerating}.
+	Going beyond FDE, an alternative embedding approach connecting subsystem DFT emerged, the so-called block-orthogonalized Manby-Miller embedding (BOMME). BOMME is a projection operator technique that is forgoing the use of approximate Kinertic Energy Densigy Functionals (KEDFs) and allows the fragmentation of a system through covalent bonds\supercite{ding2017embedded}. BOMME with a combination of real-time TDDFT (rt-BOMME) has presented a better performance in the capture of both intermolecular and intramolecular coupling among subsystems \supercite{koh2017accelerating}.
 	
-	On the other hand, with the interest of characterizing the core electronic excitations to the continuous, X-ray absorption near-edge structures (XANES) spectrum also plays an important role. X-ray absorption spectroscopy (XAS) targets the study of excitation from core orbitals due to absorbing photons in the X-ray energy range\supercite{fransson2016x}. XANES features three zones K-edge, $L_1$-edge, and $L_2$-edge, which allow the study of the oxidation state, local symmetry, and coordination environment in gas, liquid, or solid phase\supercite{rehr2005progress,koningsberger1987x}. 
+	X-ray absorption near-edge structures (XANES) also plays an important role in the characterization of the core electronic excitations. XANES targets the study of excitation from core orbitals due to absorbing photons in the X-ray energy range\supercite{fransson2016x}, which allow the study of the oxidation state, local symmetry, and coordination environment in gas, liquid, or solid phase\supercite{rehr2005progress,koningsberger1987x}. 
+	Particularly, for the simulation of XAS in liquids multiple theoretical approaches have came up, Transition potential(TP)-DFT \supercite{triguero1998calculations}, TDDFT employing Davidson procedure\supercite{davidson197514}, Excited-state core hole (XCH)\supercite{prendergast2006x}, Bethe-Salpeter equation (BSE) and Hedin’s GW approximation of the quasiparticle \supercite{vinson2012theoretical}, Coulomb hole and screened exchange (COHSEX)\supercite{chen2010x}, and QM/MM techniques\supercite{list2014lanczos}. In summary, these approaches’ main failures range from the only qualitative prediction of the experiment (TP-DFT), as well as, under or overestimation of post or main edge energies (COHSEX,BSE). A detailed description of each approach is found in the review \cite{fransson2016x}.
 	
-	Particularly, for the simulation of XAS in liquids multiple theoretical approaches have came up, Transition potential(TP)-DFT \supercite{triguero1998calculations}, TDDFT employing Davidson procedure\supercite{davidson197514}, Excited-state core hole (XCH)\supercite{prendergast2006x}, Bethe-Salpeter equation (BSE) and Hedin’s GW approximation of the quasiparticle \supercite{vinson2012theoretical}, Coulomb hole and screened exchange (COHSEX)\supercite{chen2010x}, and QM/MM techniques\supercite{list2014lanczos}. A detailed description of each approach is found in the review \cite{fransson2016x}. 
-	
-	In summary, these approaches’ main failures range from the only qualitative prediction of the experiment (TP-DFT), the well-known self-interaction error leading to an underestimation of core-excitation energies (TDDFT), as well as the use of small unit cells that narrow the post-edge region(XCH). Following the same trend due to over-structured clusters, there is an overestimation of the post-edge intensity and an underestimation of the post-edge energy (COHSEX). An overestimation of the main edge is also visible using a small number of molecules (BSE). Finally, disregarding significant orbital rehybridization effects due to the classical treatment of surrounding molecules (QM/MM) also misled the XAS spectrum’s prediction.
-	
-	In this work, taking advantage of the newest implementation of rt-BOMME and rt-sDFT \supercite{de2021environment} in Psi4 code \supercite{smith2020psi4}, to predict and overcome the already mentioned failures in the modeling of the X-ray absorption near-edge structures (XANES), we wish to go further in applications of the method for more significant systems than the first solvation shell of Cl and F in water (counting for eight water molecules). To accomplish this, we selected three main clusters (1) Liquid water and Ice, (2) Cations solvated in water, and (3) A complex molecule ($K_3[Fe(CN)_6]$) solvated in water. Additionally, a previous implementation of rt-sDFT in ADF\supercite{te2001chemistry} and eDFTpy\supercite{edftpy}, code-based of Quantum espresso package\supercite{giannozzi2009quantum}, will be used.
-
+	In this work, taking advantage of the newest implementation of rt-BOMME and rt-sDFT \supercite{de2021environment} in Psi4 code \supercite{smith2020psi4}, to predict and overcome the already mentioned failures in the modeling of the X-ray absorption near-edge structures (XANES), we wish to go further in applications of the method accounting for more than first solvation shells. To accomplish this, we selected three main clusters (1) Liquid water and Ice, (2) Cations solvated in water, and (3) A complex molecule ($K_3[Fe(CN)_6]$) solvated in water. Additionally, implementation of rt-sDFT in ADF\supercite{te2001chemistry} and eDFTpy\supercite{edftpy}, code-based of Quantum espresso package\supercite{giannozzi2009quantum}, will be used.
 
 \section{Theoretical Background}
 
-	\subsection{Subsystem DFT}
-	Subsystem DFT or Frozen Density embedding formalism developed by Wesolowski and Warshel employs a divide-and-conquer approach where the Kohn--Sham (KS) problem is solved for fragments of small size, the so-called subsystems, which alleviate the $n^3$ scaling of KS-DFT\supercite{sDFT,wesolowski1993frozen,wesolowski2006one}. In subsystem-DFT the electron density of the total system $\rho$ is partitioned into subsystem electron densities and can be written as
+\subsection{Subsystem DFT}
+Subsystem DFT or Frozen Density embedding formalism developed by Wesolowski and Warshel employs a divide-and-conquer approach where the Kohn--Sham (KS) problem is solved for fragments of small size, the so-called subsystems\supercite{sDFT,wesolowski1993frozen,wesolowski2006one}. The electron density of the total system $\rho$ is partitioned into subsystem electron densities and can be written as
 
-	\begin{equation}\label{eq:sumdensity}
-		\rho(r) = \sum\limits_{I=1}^{ \# \ of \ subsystems} \rho_{I}(r),
-	\end{equation}
+\begin{equation}\label{eq:sumdensity}
+	\rho(r) = \sum\limits_{I=1}^{ \# \ of \ subsystems} \rho_{I}(r),
+\end{equation}
 
-	where the index $I$ runs over all the subsystems.
-	
-	The subsystem densities $\rho_I$ are constructed from the absolute square of all subsystem-specific orbitals $\psi_{i}^I(r)$ as
+where the index $I$ runs over all the subsystems.
 
-	\begin{equation}\label{eq:subso}
-		\rho_I( r) = \sum\limits_{i=1}^{n_I} \abs{\psi_{i}^I(r)}^2,
-	\end{equation}
-	
-	where $n_I$ accounts for the total number of electrons per subsystem $I$.
-	The total electronic energy becomes a function of all the subsystem densities and has the form,
+The total electronic energy becomes a function of all the subsystem densities and has the form,
 
-	\begin{equation}
-		E[\{\rho_I\}] = \sum\limits_I T_{s}[\rho_I] + V_{\mathrm{nuc}}[\rho] + E_H[\rho] + E_{\mathrm{xc}}[\rho] + T_{s}^{\mathrm{nad}}[\{\rho_I\}],
-	\end{equation}
-	
-	where $V_{\mathrm{nuc}}[\rho]=\int \rho(r) v_\mathrm{ext}(r)dr$, and $E_H[\rho]$ and $E_{\mathrm{xc}}[\rho]$ are the Hartree  and exchange-correlation energy functionals.
-	
-	Conventionally, the sum of the single subsystem kinetic energy contributions $T_s[\rho_I]$ is not equal to the total non-interacting kinetic energy of the system. In such a way, a non-additive contribution arises, which is captured by the non-additive kinetic energy functional (NAKE), defined as
+\begin{equation}
+	E[\{\rho_I\}] = \sum\limits_I T_{s}[\rho_I] + V_{\mathrm{nuc}}[\rho] + E_H[\rho] + E_{\mathrm{xc}}[\rho] + T_{s}^{\mathrm{nad}}[\{\rho_I\}],
+\end{equation}
 
-	\begin{equation}
-		\label{nad}
-		T_{s}^{\mathrm{nad}}[\{\rho_{I}\}] = T_{s}[\rho] - \sum\limits_{I=1}^{N_S} T_{s}[\rho_{I}].
-	\end{equation}
+where $V_{\mathrm{nuc}}[\rho]=\int \rho(r) v_\mathrm{ext}(r)dr$, and $E_H[\rho]$ and $E_{\mathrm{xc}}[\rho]$ are the Hartree  and exchange-correlation energy functionals.
 
-	The variational problem is cleared up by solving self-consistently a KS like equation per subsystem with constrained electron density \supercite{wesolowski1994ab}, which reads
+The variational problem is cleared up by solving self-consistently a KS-like equation per subsystem with constrained electron density \supercite{wesolowski1994ab}, which reads.
 
-	\begin{equation}\label{eq:ksced}
-		\left( -\frac{\nabla^2}{2} + v_{\mathrm{eff}}^{I}[\rho_I](r) + v_{\mathrm{emb}}^{I}[\rho_{I},\rho](r) \right) \psi_{i}^I(r) = \epsilon_{i}^I \psi_{i}^I(r)
-	\end{equation}
-	The subsystem orbital energies are denoted by $\epsilon_{i}^I$ in Eq.\ \ref{eq:ksced}.\supercite{sDFT}, and the subsystem effective KS potential ($v_{\mathrm{eff}}^{I}[\rho_I](r)$) is defined as
+\begin{equation}\label{eq:ksced}
+	\left( -\frac{\nabla^2}{2} + v_{\mathrm{eff}}^{I}[\rho_I](r) + v_{\mathrm{emb}}^{I}[\rho_{I},\rho](r) \right) \psi_{i}^I(r) = \epsilon_{i}^I \psi_{i}^I(r)
+\end{equation}
+The subsystem orbital energies are denoted by $\epsilon_{i}^I$ in Eq.\ \ref{eq:ksced}.\supercite{sDFT}, and the subsystem effective KS potential ($v_{\mathrm{eff}}^{I}[\rho_I](r)$) is defined as
 
-	\begin{equation}\label{equ6}
-		v_{\mathrm{eff}}^{I}[\rho_I](r) = v_{\mathrm{ext}}^I(r) + v_{{H}}[\rho_I](r) + v_{\mathrm{xc}}[\rho_I](r).
-	\end{equation}
+\begin{equation}\label{equ6}
+	v_{\mathrm{eff}}^{I}[\rho_I](r) = v_{\mathrm{ext}}^I(r) + v_{{H}}[\rho_I](r) + v_{\mathrm{xc}}[\rho_I](r).
+\end{equation}
 
-	In equation \ref{equ6},  $v_{\mathrm{ext}}^I(r)$ is the  external potential of subsystem $I$ while $v_{\mathrm{H}}[\rho_I](r)$ and $v_{\mathrm{xc}}[\rho_I](r)$ represent the Hartree and the exchange-correlation potentials per subsystem $I$.
+In equation \ref{equ6},  $v_{\mathrm{ext}}^I(r)$ is the  external potential of subsystem $I$ while $v_{\mathrm{H}}[\rho_I](r)$ and $v_{\mathrm{xc}}[\rho_I](r)$ represent the Hartree and the exchange-correlation potentials per subsystem $I$.
 
-	By way of explanation, the Kohn–Sham single-particle Hamiltonian is augmented by an embedding potential, in which  are encoded the interaction of the electrons of subsystem $I$ with the environment, which reads as follows,
+By way of explanation, the Kohn–Sham single-particle Hamiltonian is augmented by an embedding potential, in which  are encoded the interaction of the electrons of subsystem $I$ with the environment, which reads as follows,
 
-	\begin{equation}\label{embedd}
-		\begin{aligned}
-			v_{\mathrm{emb}}^{I}[\rho,\rho_I](r) = \sum\limits_{J,J \neq I} &v_{\mathrm{ext}}^{\; J}(r) + v_{{H}}[\rho - \rho_I](r)  \\ + \ &v_{\mathrm{xc}}^{\mathrm{nad}}[\rho,\rho_{I}](r) + v_{T_s}^{\mathrm{nad}}[\rho,\rho_{I}](r),
-		\end{aligned}
-	\end{equation}
-	where $v_{\mathrm{ext}}^{\; J}$ and $v_{{H}}[\rho - \rho_I](r)$ are the inter-subsystem potentials that capture the Coulomb interactions. In detail, the non-additive exchange-correlation and kinetic potential of the environment $v_{\mathrm{xc}}^{\mathrm{nad}}[\rho,\rho_{I}](r)$ is defined as
-	
-	\begin{equation}
-		\label{emb_xct}
-		v_{\mathrm{xc, T_{S}}}^{\mathrm{nad}}[\rho,\rho_{I}](r) = \frac{\delta E_{\mathrm{xc, T_{S}}}[\rho]}{\delta \rho(r)} - \frac{\delta E_{\mathrm{xc, T_{S}}}[\rho_I]}{\delta \rho_I(r)}.
-	\end{equation}
-
-	In practice, this set of equations can either be solved iteratively using  a Freeze-and-Thaw\supercite{FaT} procedure(as done in ADF\supercite{te2001chemistry} and other molecular codes), or simultaneously by all subsystems where the total density is updated at every SCF cycle (as done in CP2K \supercite{hutter2014cp2k} and Quantum-Espresso\supercite{RN48,mi2021eqe}).
+\begin{equation}\label{embedd}
+	\begin{aligned}
+		v_{\mathrm{emb}}^{I}[\rho,\rho_I](r) = \sum\limits_{J,J \neq I} &v_{\mathrm{ext}}^{\; J}(r) + v_{{H}}[\rho - \rho_I](r)  \\ + \ &v_{\mathrm{xc}}^{\mathrm{nad}}[\rho,\rho_{I}](r) + v_{T_s}^{\mathrm{nad}}[\rho,\rho_{I}](r),
+	\end{aligned}
+\end{equation}
+where $v_{\mathrm{ext}}^{\; J}$ and $v_{{H}}[\rho - \rho_I](r)$ are the inter-subsystem potentials that capture the Coulomb interactions. 
 
 \subsection{rt-TDDFT}
-	Real-Time Time-Dependent Density Functional Theory (rt-TDDFT) or Real-Time Time-Dependent Kohn-Sham is used for computing excited state and response properties of molecules goes beyond Casida's equation \supercite{casida1995recent} and use explicit time propagation methods\supercite{goings2018real}.
-	
-	Evolution in time of the one-electron density matrix $\textbf{D}(t)$ in the algebraic approximation is given by,
-	
-	\begin{equation}
-		\textbf{D}(t) = \textbf{U}(t,t_0)\textbf{D}(t_0)\textbf{U}(t,t_0)^{\dagger}
-	\end{equation}
- 	Where $\textbf{U}(t,t_0)$, the matrix representation of the time-evolution operator, is defined as,
- 	
- 	\begin{equation}
- 		\textbf{U}(t,t_0)= \hat{T} exp \left( -i \int_{t_0}^{t} \textbf{F}(t')dt' \right),
- 	\end{equation}
- 	
- 	and $\hat{T}$ is the time-ordering operator. This time-ordering problem is solved by discretizing the time using a small time step\supercite{de2020pyberthart}. 
- 	
- 	A exponential midpoint ansatz is employed to study valence and core excitation \supercite{de2021environment}. Where the Fock matrix is given by,
- 	
- 	\begin{equation}
- 		\textbf{F}(t)=\textbf{h}_0+\textbf{G}[\textbf{D}(t)]+v_{ext}(t)
- 	\end{equation}
- 	
- 	The one-electron operator is $\textbf{h}_0$ and $\textbf{G}$ is the two-electron term,  define as,
- 	
- 	\begin{equation}
- 		\textbf{G}[\textbf{D}(t)] = \textbf{J}[\textbf{D}(t)]+c_x\textbf{K}[\textbf{D}(t)]+c_x\textbf{V}_xc[\textbf{D}(t)]
- 	\end{equation}
- 	
- 	The later accounts for the term $c_x$ which is defined as the fraction of Hartree-Fock exchange in the exchange correlation potential($V_xc$).
+Real-Time Time-Dependent Density Functional Theory (rt-TDDFT) or Real-Time Time-Dependent Kohn-Sham is used for computing excited state and response properties of molecules goes beyond Casida's equation \supercite{casida1995recent} and use explicit time propagation methods\supercite{goings2018real}.
+
+Evolution in time of the one-electron density matrix $\textbf{D}(t)$ in the algebraic approximation is given by,
+
+\begin{equation}
+	\textbf{D}(t) = \textbf{U}(t,t_0)\textbf{D}(t_0)\textbf{U}(t,t_0)^{\dagger}
+\end{equation}
+Where $\textbf{U}(t,t_0)$, the matrix representation of the time-evolution operator, is defined as,
+
+\begin{equation}
+	\textbf{U}(t,t_0)= \hat{T} exp \left( -i \int_{t_0}^{t} \textbf{F}(t')dt' \right),
+\end{equation}
+
+and $\hat{T}$ is the time-ordering operator. This time-ordering problem is solved by discretizing the time using a short time step\supercite{de2020pyberthart}. 
+
+A exponential midpoint ansatz is employed to study valence and core excitation \supercite{de2021environment}. Where the Fock matrix is given by,
+
+\begin{equation}
+	\textbf{F}(t)=\textbf{h}_0+\textbf{G}[\textbf{D}(t)]+v_{ext}(t)
+\end{equation}
+
+The one-electron operator is $\textbf{h}_0$ and $\textbf{G}$ is the two-electron term,  define as,
+
+\begin{equation}
+	\textbf{G}[\textbf{D}(t)] = \textbf{J}[\textbf{D}(t)]+c_x\textbf{K}[\textbf{D}(t)]+c_x\textbf{V}_xc[\textbf{D}(t)]
+\end{equation}
+
+The latter accounts for the term $c_x$, defined as the fraction of Hartree-Fock exchange in the exchange-correlation potential($V_xc$).
 
 \subsection{BOMME}
-	Manby-Miller embedding approach accelerate rt-TDDFT employing different levels of theory into two different mapping domains. Based on the Fock-matrix(FM), the subsystem to be treated accurately is described by a high-level FM, while the remaining part with a low-level RM in a reduced basis set. A change in the basis set from the non-orthogonal atomic-orbital(AO) partition of the system to a block-orthogonalized (BO) scheme also is employed \supercite{ding2017embedded}. 
-	
-	The low-level FM is defined as,
-	
-	\begin{equation}
-		\label{llfm}
-		\tilde{\textbf{h}}_0 = \textbf{O}^{T}\textbf{h}_0\textbf{O}, \;  \tilde{G}^{Low}[\tilde{\textbf{D}}]= \textbf{O}^{T}\textbf{G}^{Low}\textbf{O}, \;  \tilde{\textbf{D}} = \textbf{O} \textbf{D} \textbf{O}^{T}
-	\end{equation} 
-	
-	Equation \ref{llfm} describes the block-orthogonalized basis by tildes, where $\textbf{O}$ is the transformation matrix from the AO to BO basis set, defined as,
-	
-	\begin{equation}
-		\textbf{O}
-		\begin{pmatrix}
-			\textbf{I}^{AA} & \textbf{-P}^{AB} \\
-			\textbf{0} & \textbf{I}^{BB}  
-		\end{pmatrix}
-	\end{equation}
-	
-	where $AA$ block denoted the subsystem with high of level theory and $BB$ block with low level of theory.$\textbf{I}^{AA}$ and $\textbf{I}^{BB}$ are the identity matrices, with dimensions $n_a$ and $n_b$, describing subsystem A and B basis set, respectively.  $\textbf{-P}^{AB}$ is the projection matrix, equal to $(\textbf{S}^{AA})^{-1}\textbf{S}^{AB}$, in which $\textbf{S}^{AB}$ is the AO overlap between the subsystems. 
-	
-	Finally, the Fock matrix in the BO basis expression is,
-	
-	\begin{equation}
-		\textbf{F} = \tilde{h}_0 + \tilde{G}^{Low}[\tilde{\textbf{D}}] +(\tilde{\textbf{G}}^{High}[\tilde{\textbf{D}}^{AA}]-\tilde{\textbf{G}}^{Low}[\tilde{\textbf{D}^{AA}}])
-	\end{equation}
-	
-	Different methods for the calculation of the exchange term in $\textbf{G}^{High}$ are available, here the Koh, Nguyen-Beck, Parkhill is employed. This method account only for the exact exchange interaction within the AA block, an reads as,
-	
-	\begin{equation}
-		E_{EXO}=-\frac{1}{4} \sum_{\mu kv\lambda} (\mu k|v\lambda) \textbf{D}_{\mu v}^{AA} \textbf{D}_{k \lambda}^{AA}
-	\end{equation}
-	
+Manby-Miller’s embedding approach accelerates rt-TDDFT employing different levels of theory into two different mapping domains. Based on the Fock-matrix(FM), the subsystem to be treated accurately is described by a high-level FM, while the remaining part with a low-level RM in a reduced basis set. A change in the basis set from the non-orthogonal atomic-orbital(AO) partition of the system to a block-orthogonalized (BO) scheme also is employed \supercite{ding2017embedded}. 
+
+The low-level FM is defined as,
+
+\begin{equation}
+	\label{llfm}
+	\tilde{\textbf{h}}_0 = \textbf{O}^{T}\textbf{h}_0\textbf{O}, \;  \tilde{G}^{Low}[\tilde{\textbf{D}}]= \textbf{O}^{T}\textbf{G}^{Low}\textbf{O}, \;  \tilde{\textbf{D}} = \textbf{O} \textbf{D} \textbf{O}^{T}
+\end{equation} 
+
+Equation \ref{llfm} describes the block-orthogonalized basis by tildes, where $\textbf{O}$ is the transformation matrix from the AO to BO basis set, defined as,
+
+\begin{equation}
+	\textbf{O}
+	\begin{pmatrix}
+		\textbf{I}^{AA} & \textbf{-P}^{AB} \\
+		\textbf{0} & \textbf{I}^{BB}  
+	\end{pmatrix}
+\end{equation}
+
+where $AA$ block denoted the subsystem with high of level theory and $BB$ block with low level of theory.$\textbf{I}^{AA}$ and $\textbf{I}^{BB}$ are the identity matrices, with dimensions $n_a$ and $n_b$, describing subsystem A and B basis set, respectively.  $\textbf{-P}^{AB}$ is the projection matrix, equal to $(\textbf{S}^{AA})^{-1}\textbf{S}^{AB}$, in which $\textbf{S}^{AB}$ is the AO overlap between the subsystems. 
+
+Finally, the Fock matrix in the BO basis expression is,
+
+\begin{equation}
+	\textbf{F} = \tilde{h}_0 + \tilde{G}^{Low}[\tilde{\textbf{D}}] +(\tilde{\textbf{G}}^{High}[\tilde{\textbf{D}}^{AA}]-\tilde{\textbf{G}}^{Low}[\tilde{\textbf{D}^{AA}}])
+\end{equation}
+
+Different methods for the calculation of the exchange term in $\textbf{G}^{High}$ are available; here, the Koh, Nguyen-Beck, Parkhill is employed. This method accounts only for the exact exchange interaction within the AA block and reads as,
+
+\begin{equation}
+	E_{EXO}=-\frac{1}{4} \sum_{\mu kv\lambda} (\mu k|v\lambda) \textbf{D}_{\mu v}^{AA} \textbf{D}_{k \lambda}^{AA}
+\end{equation}
+
 \section{Computational Details}
 
-	Equation \ref{embedd} is solved following the frozen density embedding (FDE) method \ref{eq:ksced} implemented in the embedding Quantum Espresso (eQE) package \supercite{genova2017eqe}- Ultrasoft pseudopotentials from the PSL pseudopotential library \supercite{corso2014comput} are employed. A new implementation also is available in the package eDFTpy\supercite{edftpy} which is further used. Both codes are based on Quantum Espresso \supercite{qe}. Regarding the evaluation of the additive and nonadditive exchange--correlation contributions PBE functional \supercite{perdew1996phys} was selected. While, revAPBEK \supercite{laricchia2011generalized} for nonadditive kinetic energy contributions. 
-	
-	For the rt-BOMME and rt-FDE calculation Psi4Numpy\supercite{smith2018psi4numpy} framework of Psi4 code\supercite{smith2020psi4}, is employed. B3LYP basis set is used employing aug-cc-pVTZ and STO-3G for the High and Low Fock Matrix calculations. For real-time simulations, the subsystem belonging to the high Fock Matrix is calculated without an external electric field, and perturbed by an analytic $\delta$-function pulse os strength $k=5.0x10^{-4}$ a.u. along the three spacial directions. The Pade approximant-based Fourier Transform is used to furthers reduced the length of the signal for the dipole moment analysis, with a damping $\epsilon^{-\lambda \dot{t}}$ with $\lambda=3.0x10-4$. 
-	
-	Three key systems are used: (1) Liquid water\supercite{gaiduk2018electron} and Ice \supercite{bergmann2007nearest,zhovtobriukh2019x}, (2) Cations ($Li^{+}$,$Na^{+}$,$K^{+}$,$NH_4^{+}$) paired to carboxylate groups of acetate and glycine solvated in water \supercite{aziz2008cation}, and (3) A complex molecule ($K_3[Fe(CN)_6]$) solvated in water \supercite{zheng2018enabling}. For system (1) the liquid water model are taken over an average structure from an \textit{ab-initio} molecular dynamics (AIMD) trajectories using path-integral(PI) approach \supercite{gaiduk2018electron}, with cell sizes of 12.42 \AA and 64 water molecules per unit cell.  Ice structures also are taken from a PIMD with 192 water molecules in the simulation box\supercite{leetmaa2010theoretical}. 
-	
-	For the system (2) a first MD simulation of each of the investigated ion pairs in water is taken as starting system \supercite{aziz2008cation} of 800 water molecules in a periodic cubic cell. A further \textit{ab-initio s-DFT} molecular dynamics\supercite{genova2016avoiding} based on this geometry will be performed.  For the last system (3) Potassium Ferricyanide complex solvated by water will be constructed forming the first (6 water molecules) and the second (12 water molecules) solvation shells \supercite{uudsemaa2003density,seidel2011valence}. 
-	
+Equation \ref{embedd} is solved following the frozen density embedding (FDE) method \ref{eq:ksced} implemented in the embedding Quantum Espresso (eQE) package \supercite{genova2017eqe}- Ultrasoft pseudopotentials from the PSL pseudopotential library \supercite{corso2014comput} are employed. A new implementation also is available in the package eDFTpy\supercite{edftpy} which is further used. Both codes are based on Quantum Espresso \supercite{qe}. Regarding the evaluation of the additive and nonadditive exchange--correlation contributions PBE functional \supercite{perdew1996phys} was selected. While, revAPBEK \supercite{laricchia2011generalized} for nonadditive kinetic energy contributions. 
+
+For the rt-BOMME and rt-FDE calculation Psi4Numpy\supercite{smith2018psi4numpy} framework of Psi4 code\supercite{smith2020psi4}, is employed. B3LYP basis set employs aug-cc-pVTZ and STO-3G for the High and Low Fock Matrix calculations. For real-time simulations, the subsystem belonging to the high Fock Matrix is calculated without an external electric field and perturbed by an analytic $\delta$-function pulse os strength $k=5.0x10^{-4}$ a.u. Along with the three spatial directions. The Pade approximant-based Fourier Transform is used to furthers reduce the length of the signal for the dipole moment analysis, with a damping $\epsilon^{-\lambda \dot{t}}$ with $\lambda=3.0x10-4$. 
+
+Three key systems are used: (1) Liquid water\supercite{gaiduk2018electron} and Ice \supercite{bergmann2007nearest,zhovtobriukh2019x}, (2) Cations ($Li^{+}$,$Na^{+}$,$K^{+}$,$NH_4^{+}$) paired to carboxylate groups of acetate and glycine solvated in water \supercite{aziz2008cation}, and (3) A complex molecule ($K_3[Fe(CN)_6]$) solvated in water \supercite{zheng2018enabling}. For system (1) the liquid water model are taken over an average structure from an \textit{ab-initio} molecular dynamics (AIMD) trajectories using path-integral(PI) approach \supercite{gaiduk2018electron}, with cell sizes of 12.42 \AA and 64 water molecules per unit cell.  Ice structures also are taken from a PIMD with 192 water molecules in the simulation box\supercite{leetmaa2010theoretical}. 
+
+For system (2), a first MD simulation of each of the investigated ion pairs in water is taken as starting system \supercite{aziz2008cation} of 800 water molecules in a periodic cubic cell. A further \textit{ab-initio s-DFT} molecular dynamics\supercite{genova2016avoiding} based on this geometry will be performed.  For the last system (3), we will construct potassium Ferricyanide complex solvated by water, forming the first (6 water molecules) and the second (12 water molecules) solvation shells \supercite{uudsemaa2003density,seidel2011valence}. 
+
 \section{Current project and future directions}
-	
-	To work in ...
-	
-	With the successful approximation of IP values and its contributions. The embedding potential approach can further be used to tackle other electronic structure based properties, as the core electron excitations. To achieve that, different method have been employed, but only one base on subsystem partition approaches. For that, we wish to prove that rt-BOMME and rt-sDFT are capable method to solve different back in previous computational approaches, as too narrow absorption bands, insufficient pre edge intensity or insufficient postedge intensity.
-	
-	But not only we wish to get the spectra, also we wish to go further and ask different questions, regarding whether ions 	substantially impact the hydrogen-bond network of water outside the first solvation shell.
+
+With the successful approximation of IP values for liquid water and their contributions, we target that the embedding potential approach can further tackle other electronic structure-based properties, such as the core electron excitations. Different methods have been employed to achieve that, but only one (BOMME) is based on subsystem partition approaches. For that, we wish to prove that rt-BOMME and rt-sDFT are capable methods to overpass failures in previous computational approaches in the calculation of XANES spectra, as too narrow absorption bands, insufficient pre-edge intensity, or insufficient postedge intensity.
+
+But not only do we wish to get the spectra, but also we want to go further and answer different questions regarding whether simple and complex ions substantially impact the hydrogen-bond network of water outside the first solvation shell. 
 
 \printbibliography
 

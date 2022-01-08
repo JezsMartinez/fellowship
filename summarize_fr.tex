@@ -1,0 +1,50 @@
+\documentclass[notitlepage,12pt]{report}
+\usepackage[left=0.5in, right=0.5in, top=0.5in, bottom=0.5in]{geometry}
+
+\usepackage{titling}
+\usepackage{lipsum}
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\graphicspath{./images/}
+\usepackage{subcaption}
+\newcommand{\tr}{\mathrm{tr}}
+\usepackage{hyperref}
+\usepackage{authblk}
+\usepackage[backend=biber, style=chem-acs]{biblatex}
+\usepackage{tabularx}
+% \usepackage{amsmath}
+\usepackage{mathtools}% Loads amsmath
+\usepackage{physics}
+\renewcommand\thesection{\arabic{section}}
+
+\bibliography{bib}
+\addbibresource{bib.bib}
+
+
+\begin{document}
+	\title{Electronic properties in condensed-phase molecular systems under Embedded theoretical approaches: Liquid water systems}
+	\author[1]{Jessica Martinez}
+	\affil[1]{Department of Chemistry, Rutgers University, Newark, New Jersey}
+	\date{June 2022}
+	\renewcommand\Affilfont{\itshape\small}
+	\thispagestyle{empty}
+\maketitle
+
+	XANES targets the study of excitation from core orbitals due to absorbing photons in the X-ray energy range\supercite{fransson2016x}, which allow the study of the oxidation state, local symmetry, and coordination environment in gas, liquid, or solid phase\supercite{rehr2005progress,koningsberger1987x}. 
+	
+	Targeting the study of XANES, an alternative embedding approach connecting subsystem DFT\supercite{mi2021eqe,mi2019nonlocal,mi2019ab} called block-orthogonalized Manby-Miller embedding (BOMME)\supercite{ding2017embedded} emerged. BOMME with a combination of real-time TDDFT (rt-BOMME) has presented a better performance in the capture of both intermolecular and intramolecular coupling among subsystems \supercite{koh2017accelerating}. A recently implementation of rt-BOMME and rt-sDFT \supercite{de2021environment} in Psi4 code \supercite{smith2020psi4}, predicted and overcome general over and underestimations of main and k-edge in the modeling of the X-ray absorption near-edge structures (XANES).
+	
+	We wish to further apply rt-BOMME and rt-sDFT accounting for more than the first solvation shell of Cl and F in water (counting for eight water molecules). We selected three main clusters (1) Liquid water\supercite{gaiduk2018electron} and Ice \supercite{bergmann2007nearest,zhovtobriukh2019x}, (2) Cations ($Li^{+}$,$Na^{+}$,$K^{+}$,$NH_4^{+}$) paired to carboxylate groups of acetate and glycine solvated in water \supercite{aziz2008cation}, and (3) A complex molecule ($K_3[Fe(CN)_6]$) solvated in water \supercite{zheng2018enabling}. 
+	
+	Frozen density embedding (FDE) method implemented in the embedding Quantum Espresso (eQE) package \supercite{genova2017eqe}. A new implementation also is available in the package eDFTpy\supercite{edftpy} which is further used. Both codes are based on Quantum Espresso \supercite{qe}. Regarding the evaluation of the additive and nonadditive exchange--correlation contributions PBE functional \supercite{perdew1996phys} was selected. While, revAPBEK \supercite{laricchia2011generalized} for nonadditive kinetic energy contributions. 
+
+	For the rt-BOMME and rt-FDE calculation Psi4Numpy\supercite{smith2018psi4numpy} framework of Psi4 code\supercite{smith2020psi4}, is employed. B3LYP basis set employs aug-cc-pVTZ and STO-3G for the High and Low Fock Matrix calculations. For real-time simulations, the subsystem belonging to the high Fock Matrix is calculated without an external electric field and perturbed by an analytic $\delta$-function pulse os strength $k=5.0x10^{-4}$ a.u. Along with the three spatial directions. The Pade approximant-based Fourier Transform is used to furthers reduce the length of the signal for the dipole moment analysis, with a damping $\epsilon^{-\lambda \dot{t}}$ with $\lambda=3.0x10-4$. 
+
+	Particularly and taking advantage of the expertise of Dr. Gomes in ionic solvated studies. The system (2) and (3) XANES determination and modeling will be conducted in France. For system (2), a first MD simulation of each of the investigated ion pairs in water is taken as starting system \supercite{aziz2008cation} of 800 water molecules in a periodic cubic cell. A further \textit{ab-initio s-DFT} molecular dynamics\supercite{genova2016avoiding} based on this geometry will be performed.  For the last system (3), we will construct potassium Ferricyanide complex solvated by water, forming the first (6 water molecules) and the second (12 water molecules) solvation shells \supercite{uudsemaa2003density,seidel2011valence}. 
+	
+	Even though, different methods have been employed to achieve that only one (BOMME) is based on subsystem partition approaches. For that, we wish to prove that rt-BOMME and rt-sDFT are capable methods to overpass failures in previous computational approaches in the calculation of XANES spectra, but not only do we wish to get the spectra, but also we want to go further and answer different questions regarding whether simple and complex ions substantially impact the hydrogen-bond network of water outside the first solvation shell. 
+
+\printbibliography
+
+\end{document}
