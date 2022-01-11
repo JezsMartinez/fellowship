@@ -1,0 +1,59 @@
+\documentclass[notitlepage,12pt]{report}
+\usepackage[left=0.6in, right=0.6in, top=0.6in, bottom=0.6in]{geometry}
+\usepackage{titling}
+\usepackage{lipsum}
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\graphicspath{./images/}
+\usepackage{subcaption}
+\newcommand{\tr}{\mathrm{tr}}
+\usepackage{hyperref}
+\usepackage{authblk}
+\usepackage[backend=biber, style=chem-acs]{biblatex}
+\usepackage{tabularx}
+\usepackage{mathtools}% Loads amsmath
+\usepackage{physics}
+\usepackage{wrapfig}
+\renewcommand\thesection{\arabic{section}}
+\def\br{{\mathbf{r}}}
+\def\bG{{\mathbf{G}}}
+\def\brp{{\mathbf{r}^\prime}}
+\renewcommand{\ket}[1]{\left| #1 \right. \rangle}
+\renewcommand{\bra}[1]{\langle \left. #1 \right|}
+\renewcommand{\braket}[2]{\langle #1 \left| #2 \right. \rangle}
+\newcommand{\braopket}[3]{\langle #1 \left| #2 \right| #3 \rangle}
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+    \textbf{Summary research subject in the US}\\
+    Jessica Martinez, Rutgers University-Newark
+\end{center}
+
+My PhD thesis will have 4 chapters. So far, I have been working on 3 projects which will make up 3 of the thesis's chapters: (1) Modelling ionization energies with subsystem DFT density embedding combined with an impurity model; (2) Variational and selfconsistent excited state method for low-lying molecular excited states; (3) Static correlation density functional theory. Project (1) is the flagship project to which I am devoting a larger share of my effort and the one subject of the collaboration with the French host, Prof Andre Gomes.
+
+In this summary, I will focus on projects (2) and (3) because project (1) is the subject of the collaboration and is summarized separately (see ``Summary of your research in France and how it relates to your thesis project'' field of the application).
+
+Project (2) aims at finding the link between electron correlation energy, defined as the energy difference between a mean-field model and the exact nonrelativistic electronic energy, and the von Neuman entropy of a set of $N$ fermions. I am investigating this question by exploiting a one-body reduced density matrix formulation of Density Functional Theory originally developed by Prof Andreas Savin and coworkers (also based in France). The main idea rests on the relationship between correlation energy and the canonical orbitals and orbital energies of a reference mean field Hamiltonian. For example, we can choose an approximate Kohn-Sham Hamiltonian, $\hat h = \hat t + v_s(\br)$, where $\hat t$ is the one-electron kinetic energy operator and $v_s(\br)$ is an approximate Kohn-Sham potential evaluated for an approximate exchange-correlation density functional, and derive a connection integral connecting the mean field solution to the exact total energy by $E_\text{exact}-E_\text{KS} = \int_0^1 \frac{1}{\lambda^2} \sum_i \varepsilon_i^\text{KS} \left( P_i^\lambda - P_i^\text{KS} \right)  d\lambda$, where $\varepsilon_i^\text{KS}$ are the KS orbital energies, $P_i$ are the one-body reduced density matrix occupation numbers in the basis of the KS orbitals, superscript KS stands for the mean-field KS values while $\lambda$ is the connection path integration variable. We then find suitable approximations of the $P_i^\lambda - P_i^\text{KS}$ difference by assuming that $\lambda$ is related to a local temperature $\tau=\lambda T$ with $T$ being a parameter of the method. The local temperature $\tau$ ``smears'' the orbital occupations by the Fermi-Dirac distribution. This led me to find a simple and accurate approximation for the correlation energy. I have completed deriving all the necessary theory and now I am finishing up the application of the method on a test set of molecular bond dissociations. Preliminary results show that the method is capable of correctly reproducing Full-CI dissociation curves.
+
+Project (3) regards the development of mean field methods for running nonadiabatc molecular dynamics of excited electronic states in condensed phases. This is a continuation of a project that started in the Pavanello group before my arrival regarding the eXcited Constrained DFT (XCDFT) method. It simply determines excited electronic states by imposing a constraint of occupation on the space spanned by the occupied orbitals of a reference ground state calculation. The idea is simple. Imagine the ground state wavefunction of a system is available, say $\ket{\Psi_0}$, then there exist a Lagrange multiplier, $V_c$, such that $\ket{\Psi_1}=\text{argmin}_{\ket{\Psi}} \frac{\braopket{\Psi}{\hat H + V_c \ket{\Psi_0}\bra{\Psi_0}}{\Psi}}{\braket{\Psi}{\Psi}}$. Similarly for a mean field calculation, it is possible to augment the mean field Hamiltonian by the one-body reduced density matrix of a reference ground state, i.e., $\hat h_\text{MF} \to \hat h_\text{MF} + V_c \hat\gamma_0$, imposing that the space spanned by the occupied orbitals of the excited state contains $N-1$ electrons compared to the ground state (containing $N$) achieved by imposing $\text{Tr}\left[ \hat\gamma_0 \hat\gamma \right]=N-1$. This effectively leads to an excited state.
+
+My project regards extending XCDFT to model excited states of extended systems by implementing it in Quantum ESPRESSO, and specifically in our group's Python version of Quantum ESPRESSO called QEpy. Once I achieve this, I will be able to run excited states molecular dynamics simulations based on the excited state's surfaces through a Surface Hopping procedure or Ehrenfest. The key ingredients for such simulations are the nonadiabatic coupling vectors which I will implements as well. 
+
+\newpage
+\begin{center}
+    \textbf{Summary of research in France}\\
+    Jessica Martinez, Rutgers University-Newark
+\end{center}
+
+This is a summary of the project of my thesis work which I plan to carry out in collaboration with the research group of Prof Andre Gomes. For this project, my interest is in modeling electronic processes in molecular condensed phases, such as bulk liquids, solvated species and molecular crystals. Among the electronic processes that I am interested in there are: ionization, electron attachment, core-electron excitations and other properties related to the optical response of these systems. To achieve my goal, I cannot use off-the-shelf electronic structure metods because these are too computationally expensive for the kinds of simulations and the level of accuracy that I target. For example, there is still no electronic structure method that is capable of computing accurately the core-electron excitations of species solvated in water and where the full response of the solvent is accounted for in the simulation. It is known that the solvent-solute interactions appreciably shift the spectral features in X-Ray spectroscopies as well as in photoelectron spectroscopies. These interactions are difficult to model because the number of atoms needed to be included in the model baloons to a few hundred for system sizes that are free of finite-size effects. 
+
+My goal, therefore, is to visit Prof Gomes and implement his method (rt-BOMME, see the project description document) that is known to be accurate for molecular clusters. My role then would be to extend the applicability of rt-BOMME to go beyond molecular clusters to approach condensed phases. My idea is to do so by implementing a hybrid density embedding/density matrix embedding where the BOMME approach is used for short-ranged interactions between the solute and the solvet, while for long ranged interactions (i.e., between solvent moleules) I can adopt the density embedding approach. 
+
+I plan to implement the proposed method in the eDFTpy code developed by the Pavanello group (see edftpy.rutgers.edu) by developing a set if Python classes for integrating Psi4Numpy (the code base for BOMME) in eDFTpy. There are a number if interesting challenges that I will work on, such as designing a computationally efficient connection between a plane wave code, like eDFTpy, and a local orbital based code, like Psi4. This will be the core of the project which will be carried out in France. 
+
+I plan to complete the needed implementations in the first 4-5 months of my visit to Prof Gomes's lab. After that, I will use the remainder of the time to set up and carry out validation analysis and applications. While validation will be a tedious (yet very important) step, the application of the new method to solvated metal cations will be very interesting and an exciting step. The complex solvation structure in these systems is dynamical (i.e., water can weakly ligate to the metal), thus carrying out ab-initio MD will be of fundamental importance. I will therefore use the newly implemented method to carry out the dynamics and will follow up with calculations for specific spectroscopic observables. 
+
+This project will have strong and long-lasting impacts in the computational chemistry community as well as in the X-Ray and photoelectron spectroscopy community where much of the interpretation of the spectra is delegated to DFT simulations. Additionally, the software I will develop will be completely open source and free to everyone.
+
+\end{document}
